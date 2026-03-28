@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 完全复用 index.html 的头部资源 -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dmego Home | About">
+    <meta name="keywords" content="Dmego,Homepage,About">
+    <meta name="author" content="Dmego">
+    <title>Dmego Home | About</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/dmego-home-page@latest/assets/css/onlinewebfonts.css"/>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/dmego-home-page@latest/assets/css/vno.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/dmego-home-page@latest/assets/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/dmego-home-page@latest/assets/css/wakatime-theme.css">
+    <link rel="apple-touch-icon" href="https://unpkg.com/dmego-home-page@latest/apple-touch-icon.png">
+    <link rel="icon" href="./">
+    <style>
+        /* 仅补充关于页的自定义样式，不覆盖原有样式 */
+        .about-content {
+            margin-top: 20px;
+            color: #fff;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+        .about-content h3 {
+            margin: 15px 0 10px;
+            font-size: 16px;
+            color: #eee;
+        }
+        .about-content p {
+            margin: 8px 0;
+        }
+        .skill-tags {
+            margin: 10px 0;
+        }
+        .skill-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin: 0 5px 5px 0;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <span class="mobile btn-mobile-menu">
+        <i class="social iconfont icon-list btn-mobile-menu__icon"></i>
+        <i class="social iconfont icon-angleup btn-mobile-close__icon hidden"></i>
+    </span>
+    <header id="panel" class="panel-cover">
+        <div class="panel-main">
+            <div class="panel-main__inner panel-inverted">
+                <div class="panel-main__content">
+                    <!-- 复用头像区域 -->
+                    <div class="ih-item circle effect right_to_left">            
+                        <a href="#" title="" class="blog-button">
+                            <div class="img"><img src="https://unpkg.com/dmego-home-page@latest/assets/img/logo3.jpg" alt="img" class="js-avatar iUp profilepic"></div>
+                            <div class="info iUp">
+                                <div class="info-back">
+                                    <h2> 
+                                        Be Brave
+                                    </h2>
+                                    <p>
+                                        2026 · 平静
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- 标题保持统一 -->
+                    <h1 class="panel-cover__title panel-title iUp">
+                        <a href="#" title="Dmego Home">Dmego</a>
+                    </h1>
+                    <p class="panel-cover__subtitle panel-subtitle iUp">Code Create Life</p>
+                    <hr class="panel-cover__divider iUp" />
+                    
+                    <!-- 关于页核心内容 -->
+                    <div id="description" class="panel-cover__description iUp about-content">
+                        <h3>关于我</h3>
+                        <p>专注于软件开发领域，热爱代码与创造，相信技术能改变生活。</p>
+                        <p>长期深耕前后端开发、DevOps 等方向，喜欢探索新技术、解决实际问题。</p>
+                        
+                        <h3>技术栈</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">JavaScript/TypeScript</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Go</span>
+                            <span class="skill-tag">Vue/React</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Git/GitHub Actions</span>
+                        </div>
+                        
+                        <h3>座右铭</h3>
+                        <p>如何得与凉风约, 不共尘沙一并来! <strong>-「中牟道中」</strong></p>
+                    </div>
+
+                    <!-- 复用导航栏（和 index.html 完全一致） -->
+                    <div class="navigation-wrapper iUp">
+                        <div>
+                            <nav class="cover-navigation cover-navigation--primary">
+                                <ul class="navigation">
+                                    <li class="navigation__item">
+                                        <a href="/" class="blog-button">homepage</a>
+                                    </li>
+                                    <li class="navigation__item">
+                                        <a href="https://dmego.cn" class="blog-button" target="_blank" onclick="event.preventDefault(); showWeChatModal();">blog</a>
+                                    </li>
+                                    <li class="navigation__item">
+                                        <a href="https://r.dmego.cn" class="blog-button" target="_blank" onclick="event.preventDefault();">CV</a>
+                                    </li>
+                                    <li class="navigation__item">
+                                        <a href="https://dmego.cn/about/" class="blog-button" target="_blank" onclick="event.preventDefault();">about</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- 复用社交链接 -->
+                        <div class="iUp">
+                            <nav class="cover-navigation navigation--social">
+                                <ul class="navigation">
+                                    <li class="navigation__item">
+                                        <a href="https://github.com/dmego/" title="github" target="_blank">
+                                            <i class='social iconfont icon-github'></i>
+                                            <span class="label">github</span>
+                                        </a>
+                                    </li>
+                                    <li class="navigation__item">
+                                        <a href="http://www.cnblogs.com/dmego/" title="cnblogs" target="_blank">
+                                            <i class='social iconfont icon-cnblogs'></i>
+                                            <span class="label">cnblogs</span>
+                                        </a>
+                                    </li>
+                                    <li class="navigation__item">
+                                        <a href="https://www.zhihu.com/people/dmego/" title="zhihu" target="_blank">
+                                            <i class='social iconfont icon-zhihu'></i>
+                                            <span class="label">zhihu</span>
+                                        </a>
+                                    </li>
+                                    <li class="navigation__item">
+                                        <a href="javascript:decryptEmail('ZG1lYWdvQGdtYWlsLmNvbQ==');" title="email">
+                                            <i class='social iconfont icon-email'></i>
+                                            <span class="label">email</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-cover--overlay cover-slate"></div>
+        </div>
+        <!-- 复用页脚备注 -->
+        <div class="remark iUp">
+            <p class="power">Powered By 
+                <a href="https://github.com/features/actions" target="_blank"> GitHub Actions </a> And 
+                <a href="https://hitokoto.cn/" target="_blank"> Hitokoto </a>
+            </p>
+        </div>
+    </header>
+
+    <!-- 复用微信模态框 -->
+    <div id="wechatModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000; justify-content: center; align-items: center; flex-direction: column; opacity: 0; visibility: hidden; transition: opacity 0.3s ease;" onclick="closeWeChatModal()">
+        <img src="./assets/img/wechat.jpg" alt="WeChat" style="max-width: 300px; max-height: 300px; border-radius: 10px;" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- 复用脚本 -->
+    <script type="text/javascript" src="https://unpkg.com/dmego-home-page@latest/assets/js/main.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/dmego-home-page@latest/assets/js/theme-loader.js"></script>
+</body>
+</html>
