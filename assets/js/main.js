@@ -76,33 +76,36 @@ function decryptEmail(encoded) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-	// 获取一言数据
-	fetch("https://v1.hitokoto.cn")
-		.then(function(response) {
-			return response.json();
-		})
-		.then(function(res) {
-			var descElement = document.getElementById('description');
-			if (descElement && res.hitokoto && res.from) {
-				// Create text nodes to prevent XSS
-				var textNode = document.createTextNode(res.hitokoto);
-				var br = document.createElement('br');
-				var fromText = document.createTextNode(' -「');
-				var strong = document.createElement('strong');
-				strong.textContent = res.from;
-				var endText = document.createTextNode('」');
-				
-				descElement.innerHTML = '';
-				descElement.appendChild(textNode);
-				descElement.appendChild(br);
-				descElement.appendChild(fromText);
-				descElement.appendChild(strong);
-				descElement.appendChild(endText);
-			}
-		})
-		.catch(function(error) {
-			console.error('Error fetching hitokoto:', error);
-		});
+	// 获取一言数据（仅在首页执行）
+	var isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
+	if (isHomePage) {
+		fetch("https://v1.hitokoto.cn")
+			.then(function(response) {
+				return response.json();
+			})
+			.then(function(res) {
+				var descElement = document.getElementById('description');
+				if (descElement && res.hitokoto && res.from) {
+					// Create text nodes to prevent XSS
+					var textNode = document.createTextNode(res.hitokoto);
+					var br = document.createElement('br');
+					var fromText = document.createTextNode(' -「');
+					var strong = document.createElement('strong');
+					strong.textContent = res.from;
+					var endText = document.createTextNode('」');
+
+					descElement.innerHTML = '';
+					descElement.appendChild(textNode);
+					descElement.appendChild(br);
+					descElement.appendChild(fromText);
+					descElement.appendChild(strong);
+					descElement.appendChild(endText);
+				}
+			})
+			.catch(function(error) {
+				console.error('Error fetching hitokoto:', error);
+			});
+	}
 
 	var iUpElements = document.querySelectorAll(".iUp");
 	for (var i = 0; i < iUpElements.length; i++) {
