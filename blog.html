@@ -33,6 +33,11 @@
             border-radius: 8px;
             padding: 20px;
             margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        .blog-post:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
         }
         .blog-post-date {
             font-size: 12px;
@@ -49,6 +54,51 @@
             font-size: 14px;
             line-height: 1.8;
             color: rgba(255,255,255,0.9);
+        }
+        .blog-tags {
+            margin-top: 10px;
+        }
+        .blog-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin: 0 5px 5px 0;
+            font-size: 12px;
+            color: rgba(255,255,255,0.9);
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        .pagination button {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .pagination button:hover:not(:disabled) {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+        }
+        .pagination button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .pagination .page-info {
+            color: rgba(255,255,255,0.8);
+            font-size: 14px;
+        }
+        .no-posts {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255,255,255,0.6);
         }
     </style>
 </head>
@@ -85,15 +135,8 @@
 
                     <div class="panel-cover__description iUp blog-content">
                         <h3>Blog</h3>
-                        
-                        <div class="blog-post">
-                            <div class="blog-post-date">March 29, 2026</div>
-                            <div class="blog-post-title">Personal Homepage Launched</div>
-                            <div class="blog-post-content">
-                                <p>Today I created my personal homepage! 🎉</p>
-                                <p>This is the beginning of my journey to share my thoughts, projects, and experiences with the world. Stay tuned for more updates!</p>
-                            </div>
-                        </div>
+                        <div id="posts-container"></div>
+                        <div class="pagination" id="pagination"></div>
                     </div>
 
                     <div class="navigation-wrapper iUp">
@@ -167,5 +210,115 @@
 
     <script type="text/javascript" src="./assets/js/main.js"></script>
     <script type="text/javascript" src="./assets/js/theme-loader.js"></script>
+    <script>
+        (function() {
+            var postsContainer = document.getElementById('posts-container');
+            var paginationContainer = document.getElementById('pagination');
+            var posts = [];
+            var postsPerPage = 5;
+            var currentPage = 1;
+
+            // Load posts from JSON file
+            function loadPosts() {
+                fetch('./assets/json/posts.json?t=' + new Date().getTime())
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        posts = data.posts || [];
+                        postsPerPage = data.postsPerPage || 5;
+                        renderPosts();
+                        renderPagination();
+                    })
+                    .catch(function(error) {
+                        console.error('Error loading posts:', error);
+                        postsContainer.innerHTML = '<div class="no-posts">Failed to load posts</div>';
+                    });
+            }
+
+            // Get posts for current page
+            function getCurrentPagePosts() {
+                var start = (currentPage - 1) * postsPerPage;
+                var end = start + postsPerPage;
+                return posts.slice(start, end);
+            }
+
+            // Get total pages
+            function getTotalPages() {
+                return Math.ceil(posts.length / postsPerPage);
+            }
+
+            // Render posts
+            function renderPosts() {
+                if (posts.length === 0) {
+                    postsContainer.innerHTML = '<div class="no-posts">No posts yet. Check back soon!</div>';
+                    return;
+                }
+
+                var pagePosts = getCurrentPagePosts();
+                var html = '';
+                
+                pagePosts.forEach(function(post) {
+                    html += '<div class="blog-post">';
+                    html += '<div class="blog-post-date">' + post.dateDisplay + '</div>';
+                    html += '<div class="blog-post-title">' + post.title + '</div>';
+                    html += '<div class="blog-post-content">' + post.content + '</div>';
+                    
+                    if (post.tags && post.tags.length > 0) {
+                        html += '<div class="blog-tags">';
+                        post.tags.forEach(function(tag) {
+                            html += '<span class="blog-tag">' + tag + '</span>';
+                        });
+                        html += '</div>';
+                    }
+                    
+                    html += '</div>';
+                });
+
+                postsContainer.innerHTML = html;
+            }
+
+            // Render pagination
+            function renderPagination() {
+                if (posts.length === 0) {
+                    paginationContainer.innerHTML = '';
+                    return;
+                }
+
+                var totalPages = getTotalPages();
+                var html = '';
+
+                // Previous button
+                html += '<button onclick="changePage(' + (currentPage - 1) + ')" ' + 
+                    (currentPage === 1 ? 'disabled' : '') + '>← Prev</button>';
+
+                // Page info
+                html += '<span class="page-info">Page ' + currentPage + ' of ' + totalPages + '</span>';
+
+                // Next button
+                html += '<button onclick="changePage(' + (currentPage + 1) + ')" ' + 
+                    (currentPage === totalPages ? 'disabled' : '') + '>Next →</button>';
+
+                paginationContainer.innerHTML = html;
+            }
+
+            // Change page
+            window.changePage = function(page) {
+                var totalPages = getTotalPages();
+                if (page < 1 || page > totalPages) {
+                    return;
+                }
+                currentPage = page;
+                renderPosts();
+                renderPagination();
+                
+                // Scroll to top of posts
+                postsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            };
+
+            // Initialize
+            loadPosts();
+        })();
+    </script>
 </body>
 </html>

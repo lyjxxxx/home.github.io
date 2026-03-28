@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "date": "2026-03-29",
+      "dateDisplay": "March 29, 2026",
+      "title": "Personal Homepage Launched",
+      "content": "<p>Today I created my personal homepage! 🎉</p><p>This is the beginning of my journey to share my thoughts, projects, and experiences with the world. Stay tuned for more updates!</p>",
+      "tags": ["Personal", "Website"]
+    }
+  ],
+  "postsPerPage": 5
+}
