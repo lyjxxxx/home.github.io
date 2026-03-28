@@ -7978,7 +7978,8 @@ hr {
     transform: translate3d(0, 0, 0);
     -webkit-transition: width .6s ease;
     -moz-transition: width .6s ease;
-    transition: width .6s ease
+    transition: width .6s ease;
+    overflow-y: auto
 }
 
 .panel-cover--collapsed {
