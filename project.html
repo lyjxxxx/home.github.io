@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Liu Yijun - Curriculum Vitae">
-    <meta name="keywords" content="Liu Yijun,CV,Resume">
+    <meta name="description" content="Liu Yijun - Projects">
+    <meta name="keywords" content="Liu Yijun,Projects">
     <meta name="author" content="Liu Yijun">
-    <title>Liu Yijun - CV</title>
+    <title>Liu Yijun - Projects</title>
     <link rel="stylesheet" type="text/css" href="./assets/css/onlinewebfonts.css"/>
     <link rel="stylesheet" type="text/css" href="./assets/css/vno.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/iconfont.css">
@@ -16,47 +16,64 @@
     <link rel="apple-touch-icon" href="./apple-touch-icon.png">
     <link rel="icon" href="./">
     <style>
-        .cv-content {
+        .project-content {
             margin-top: 20px;
             color: #fff;
             line-height: 1.8;
             font-size: 14px;
         }
-        .cv-content h3 {
+        .project-content h3 {
             margin: 15px 0 10px;
             font-size: 16px;
             color: #eee;
         }
-        .cv-content p {
-            margin: 8px 0;
+        .project-list {
+            margin: 15px 0;
         }
-        .cv-pdf-container {
-            width: 100%;
-            height: 70vh;
-            margin-top: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
+        .project-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 8px;
-            overflow: hidden;
-        }
-        .cv-pdf-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .cv-download-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 4px;
-            color: #fff;
-            text-decoration: none;
+            padding: 20px;
+            margin: 15px 0;
             transition: all 0.3s ease;
         }
-        .cv-download-btn:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.5);
+        .project-item:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+        }
+        .project-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .project-description {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 10px;
+        }
+        .project-tags {
+            margin-top: 10px;
+        }
+        .project-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin: 0 5px 5px 0;
+            font-size: 12px;
+            color: rgba(255,255,255,0.9);
+        }
+        .project-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: rgba(255,255,255,0.9);
+            text-decoration: underline;
+        }
+        .project-link:hover {
+            color: #fff;
         }
     </style>
 </head>
@@ -91,19 +108,24 @@
                     <p class="panel-cover__subtitle panel-subtitle iUp">Code Create Life</p>
                     <hr class="panel-cover__divider iUp" />
 
-                    <div class="panel-cover__description iUp cv-content">
-                        <h3>Curriculum Vitae</h3>
-                        <p>View or download my CV below:</p>
+                    <div class="panel-cover__description iUp project-content">
+                        <h3>Projects</h3>
+                        <p>Here are some of my projects:</p>
                         
-                        <div class="cv-pdf-container">
-                            <iframe src="./resume_en.pdf#toolbar=0" title="CV PDF"></iframe>
-                        </div>
-                        
-                        <div style="text-align: center;">
-                            <a href="./resume_en.pdf" class="cv-download-btn" download>
-                                <i class="social iconfont icon-download" style="margin-right: 8px;"></i>
-                                Download CV (PDF)
-                            </a>
+                        <div class="project-list">
+                            <div class="project-item">
+                                <div class="project-title">Personal Homepage</div>
+                                <div class="project-description">
+                                    A personal homepage built with HTML, CSS and JavaScript. Features daily theme updates based on WakaTime coding activity.
+                                </div>
+                                <div class="project-tags">
+                                    <span class="project-tag">HTML</span>
+                                    <span class="project-tag">CSS</span>
+                                    <span class="project-tag">JavaScript</span>
+                                    <span class="project-tag">GitHub Actions</span>
+                                </div>
+                                <a href="https://github.com/lyjxxxx/home.github.io" class="project-link" target="_blank">View on GitHub →</a>
+                            </div>
                         </div>
                     </div>
 
