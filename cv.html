@@ -43,6 +43,11 @@
             height: 100%;
             border: none;
         }
+        @media all and (max-width: 780px) {
+            .cv-pdf-container {
+                height: 50vh;
+            }
+        }
         .cv-download-btn {
             display: inline-block;
             margin-top: 15px;
@@ -94,13 +99,33 @@
                     <div class="panel-cover__description iUp cv-content">
                         <h3>Curriculum Vitae</h3>
                         <p>View or download my CV below:</p>
-                        
-                        <div class="cv-pdf-container">
-                            <iframe src="./resume_en.pdf#toolbar=0" title="CV PDF"></iframe>
+
+                        <div class="cv-pdf-container" id="cv-pdf-container">
+                            <iframe src="./resume_en.pdf#toolbar=0" title="CV PDF" id="cv-pdf-iframe"></iframe>
                         </div>
-                        
-                        <div style="text-align: center;">
-                            <a href="./resume_en.pdf" class="cv-download-btn" download>
+                        <div class="cv-pdf-fallback" id="cv-pdf-fallback" style="display: none; text-align: center; margin: 20px 0;">
+                            <div style="background: rgba(255,255,255,0.05); border: 2px dashed rgba(255,255,255,0.3); border-radius: 8px; padding: 40px 20px;">
+                                <i class="social iconfont icon-pdf" style="font-size: 48px; color: rgba(255,255,255,0.6); margin-bottom: 15px; display: block;"></i>
+                                <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">PDF preview is not available on your device</p>
+                                <a href="./resume_en.pdf" class="cv-download-btn" target="_blank">
+                                    <i class="social iconfont icon-download" style="margin-right: 8px;"></i>
+                                    View CV in Browser
+                                </a>
+                                <br>
+                                <a href="./resume_en.pdf" class="cv-download-btn" download style="margin-top: 10px;">
+                                    <i class="social iconfont icon-download" style="margin-right: 8px;"></i>
+                                    Download CV (PDF)
+                                </a>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 20px;">
+                            <a href="./resume_en.pdf" class="cv-download-btn" target="_blank">
+                                <i class="social iconfont icon-download" style="margin-right: 8px;"></i>
+                                View CV in Browser
+                            </a>
+                            <br>
+                            <a href="./resume_en.pdf" class="cv-download-btn" download style="margin-top: 10px;">
                                 <i class="social iconfont icon-download" style="margin-right: 8px;"></i>
                                 Download CV (PDF)
                             </a>
@@ -163,5 +188,44 @@
 
     <script type="text/javascript" src="./assets/js/main.js"></script>
     <script type="text/javascript" src="./assets/js/theme-loader.js"></script>
+    <script>
+        // Detect mobile devices and show fallback for PDF iframe
+        (function() {
+            var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            var pdfContainer = document.getElementById('cv-pdf-container');
+            var pdfFallback = document.getElementById('cv-pdf-fallback');
+            var pdfIframe = document.getElementById('cv-pdf-iframe');
+
+            if (isMobile && pdfContainer && pdfFallback) {
+                // On mobile, hide iframe and show fallback
+                pdfContainer.style.display = 'none';
+                pdfFallback.style.display = 'block';
+            } else if (pdfIframe) {
+                // On desktop, try to load iframe but show fallback if it fails
+                pdfIframe.onload = function() {
+                    // Check if iframe loaded properly (has content)
+                    try {
+                        var iframeDoc = pdfIframe.contentDocument || pdfIframe.contentWindow.document;
+                        if (!iframeDoc || iframeDoc.documentElement.tagName === 'HTML') {
+                            // PDF loaded successfully
+                            return;
+                        }
+                    } catch (e) {
+                        // Cross-origin or other error, show fallback
+                        pdfContainer.style.display = 'none';
+                        pdfFallback.style.display = 'block';
+                    }
+                };
+
+                // Timeout to show fallback if iframe doesn't load
+                setTimeout(function() {
+                    if (pdfIframe && (!pdfIframe.contentDocument || pdfIframe.contentDocument.readyState !== 'complete')) {
+                        pdfContainer.style.display = 'none';
+                        pdfFallback.style.display = 'block';
+                    }
+                }, 5000);
+            }
+        })();
+    </script>
 </body>
 </html>
