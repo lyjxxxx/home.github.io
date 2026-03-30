@@ -76,7 +76,8 @@ function decryptEmail(encoded) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-	// 获取一言数据（仅在首页执行）
+	// 一言功能已禁用 - 使用自定义欢迎语
+	/*
 	var isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
 	if (isHomePage) {
 		fetch("https://v1.hitokoto.cn")
@@ -106,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				console.error('Error fetching hitokoto:', error);
 			});
 	}
+	*/
 
 	var iUpElements = document.querySelectorAll(".iUp");
 	for (var i = 0; i < iUpElements.length; i++) {
