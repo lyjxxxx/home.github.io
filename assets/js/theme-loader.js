@@ -206,6 +206,10 @@
   }
 
   function updateStatusDisplay(config, theme) {
+    // Skip on about page
+    if (window.location.pathname.endsWith('/about.html') || window.location.pathname.endsWith('/about')) {
+      return;
+    }
     var statusEl = document.getElementById('wakatime-status');
     if (!statusEl) {
       statusEl = document.createElement('div');
@@ -213,11 +217,11 @@
       statusEl.className = 'wakatime-status';
       document.body.appendChild(statusEl);
     }
-    
+
     // 添加点击提示样式
     statusEl.style.cursor = 'pointer';
     statusEl.title = '点击查看本周能量报告';
-    
+
     statusEl.innerHTML = '<span class="wt-emoji">' + theme.emoji + '</span> ' +
                          '<span class="wt-text">' + theme.name + ' · ' + config.hours + 'h</span>';
   }
