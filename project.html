@@ -128,6 +128,20 @@
                             </div>
 
                             <div class="project-item">
+                                <div class="project-title">Drifting Model</div>
+                                <div class="project-description">
+                                    <img src="./微信图片_20260511120618_35_55.png" alt="Drifting Model: Training and Inference Pipeline" style="max-width: 100%; height: auto; border-radius: 8px; margin: 10px 0;">
+                                    <p>The Drifting Model separates distribution matching into a training-time drift process and an inference-time one-step generation. During training, a generator maps random noise to a sample, and a drift field based on both real and generated samples defines a target direction.</p>
+                                    <p>The loss forces the generator output towards a stop-gradient target, effectively minimizing the drift field norm without backpropagating through the distribution. After iterative optimization, inference requires only a single forward pass to produce new samples, which can then be decoded into final expressions.</p>
+                                </div>
+                                <div class="project-tags">
+                                    <span class="project-tag">Generative Modeling</span>
+                                    <span class="project-tag">Drift Field</span>
+                                    <span class="project-tag">Inference</span>
+                                </div>
+                            </div>
+
+                            <div class="project-item">
                                 <div class="project-title">Personal Homepage</div>
                                 <div class="project-description">
                                     A personal homepage built with HTML, CSS and JavaScript. Features daily theme updates based on WakaTime coding activity.
