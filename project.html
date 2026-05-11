@@ -142,6 +142,20 @@
                             </div>
 
                             <div class="project-item">
+                                <div class="project-title">Evolution Strategies for QFR Policy</div>
+                                <div class="project-description">
+                                    <img src="./微信图片_20260511150450_37_55.png" alt="Evolution Strategies training pipeline for QFR policy" style="max-width: 100%; height: auto; border-radius: 8px; margin: 10px 0;">
+                                    <p>This flowchart presents the Evolution Strategies (ES) training pipeline for a QFR policy that generates a stock factor pool. The process begins by initializing the random seed, target expression, data splits, AlphaPool, AlphaEnv, and the policy network.</p>
+                                    <p>The ES loop then runs for a fixed number of generations: each generation samples noisy perturbations of the policy parameters (with optional mirrored sampling), evaluates each candidate by rolling out the policy in the environment, computes a shaped reward using an IR-based penalty (Eq. 11), performs fitness shaping (centered ranks), estimates the gradient, and updates the parameters. Periodic logging evaluates the current factor pool on the test set. After all generations, the final policy parameters are used to produce and save the final factor pool.</p>
+                                </div>
+                                <div class="project-tags">
+                                    <span class="project-tag">Evolution Strategies</span>
+                                    <span class="project-tag">Reinforcement Learning</span>
+                                    <span class="project-tag">Factor Pool</span>
+                                </div>
+                            </div>
+
+                            <div class="project-item">
                                 <div class="project-title">Personal Homepage</div>
                                 <div class="project-description">
                                     A personal homepage built with HTML, CSS and JavaScript. Features daily theme updates based on WakaTime coding activity.
