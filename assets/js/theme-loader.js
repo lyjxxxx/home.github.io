@@ -206,10 +206,7 @@
   }
 
   function updateStatusDisplay(config, theme) {
-    // Skip on about page
-    if (window.location.pathname.endsWith('/about.html') || window.location.pathname.endsWith('/about')) {
-      return;
-    }
+    return;
     var statusEl = document.getElementById('wakatime-status');
     if (!statusEl) {
       statusEl = document.createElement('div');
